@@ -5,10 +5,10 @@ import ralphcollett.eq
 fun TaxiPark.checkParetoPrinciple(): Boolean {
     if (trips.isEmpty()) return false
 
-    val totalIncome = trips.sumByDouble(Trip::cost)
+    val totalIncome = trips.sumOf(Trip::cost)
     val sortedDriversIncome: List<Double> = trips
         .groupBy(Trip::driver)
-        .map { (_, tripsByDriver) -> tripsByDriver.sumByDouble(Trip::cost) }
+        .map { (_, tripsByDriver) -> tripsByDriver.sumOf(Trip::cost) }
         .sortedDescending()
 
     val numberOfTopDrivers = (0.2 * allDrivers.size).toInt()
